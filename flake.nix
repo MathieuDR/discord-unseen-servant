@@ -36,7 +36,7 @@
         default = pkgs.mkShell {
           packages = with pkgs;
             [
-              beam.packages.erlang_2_27.elixir_1_18
+              beam.packages.erlang_27.elixir_1_18
               just
               entr
             ]
