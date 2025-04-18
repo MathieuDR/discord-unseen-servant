@@ -22,8 +22,15 @@ defmodule Servant.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:ecto, "~> 3.10"},
+      {:ecto_sqlite3, "~> 0.17"},
+      {:nostrum, "~> 0.10"},
+      {:typed_ecto_schema, "~> 0.4.1", runtime: false},
+      {:typed_struct, "~> 0.3", runtime: false},
+      {:styler, "~> 0.11", only: [:test, :dev], runtime: false},
+      {:ex_check, "~> 0.16.0", only: [:test, :dev], runtime: false},
+      {:credo, ">= 0.0.0", only: [:test, :dev], runtime: false},
+      {:dialyxir, ">= 0.0.0", only: [:test, :dev], runtime: false}
     ]
   end
 end
