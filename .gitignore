@@ -22,6 +22,8 @@ servant-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 
+/priv/data/database.db
+
 # Nix stuff
 .hex
 .mix
