@@ -2,14 +2,23 @@ defmodule Servant.MixProject do
   use Mix.Project
 
   def project do
+    env = Mix.env()
+
     [
       app: :servant,
       version: "0.1.0",
       elixir: "~> 1.18",
-      start_permanent: Mix.env() == :prod,
+      start_permanent: env == :prod,
+      elixirc_paths: elixirc_paths(env),
       deps: deps()
     ]
   end
+
+  defp elixirc_paths(:dev), do: ["dev" | base_elixirc_paths()]
+  defp elixirc_paths(:test), do: ["test/support" | base_elixirc_paths()]
+  defp elixirc_paths(_env), do: base_elixirc_paths()
+
+  defp base_elixirc_paths, do: ["lib", "config/runtime/"]
 
   # Run "mix help compile.app" to learn about applications.
   def application do

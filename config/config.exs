@@ -18,4 +18,4 @@ config :nostrum,
       environment variable DISCORD_TOKEN is missing.
       """)
 
-# import_config "compiletime/#{config_env()}.exs"
+import_config "#{config_env()}.exs"
