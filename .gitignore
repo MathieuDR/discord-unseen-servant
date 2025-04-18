@@ -8,3 +8,10 @@ erl_crash.dump
 *.beam
 /config/*.secret.exs
 .elixir_ls/
+
+.envrc_secret
+
+# Nix stuff
+.hex
+.mix
+.direnv
