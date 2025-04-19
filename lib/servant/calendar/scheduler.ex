@@ -7,11 +7,11 @@ defmodule Servant.Calendar.Scheduler do
 
   typedstruct do
     field :healthcheck_url, String.t()
-    field :timeout, pos_integer() | nil, default: nil
+    field :timeout, pos_integer()
   end
 
-  def start_link(_state) do
-    GenServer.start_link(__MODULE__, %__MODULE__{}, name: __MODULE__)
+  def start_link(%__MODULE__{} = init_arg) do
+    GenServer.start_link(__MODULE__, init_arg, name: __MODULE__)
   end
 
   @impl true
@@ -27,14 +27,7 @@ defmodule Servant.Calendar.Scheduler do
     {:noreply, state}
   end
 
-  def schedule(%__MODULE__{} = state) do
-    now = DateTime.utc_now()
-
-    timeout =
-      now
-      |> DateTime.add(30, :second)
-      |> DateTime.diff(now, :millisecond)
-
+  def schedule(%__MODULE__{timeout: timeout} = state) do
     Process.send_after(self(), :update, timeout)
     Logger.info("Scheduled next update in: #{timeout}ms", timeout_in_ms: timeout)
 
