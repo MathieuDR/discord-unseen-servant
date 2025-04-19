@@ -24,7 +24,8 @@ defmodule Servant.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Servant.Application, []}
+      mod: {Servant.Application, []},
+      included_applications: [:nostrum]
     ]
   end
 
