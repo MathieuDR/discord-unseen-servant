@@ -40,7 +40,9 @@ defmodule Servant.MixProject do
       {:styler, "~> 0.11", only: [:test, :dev], runtime: false},
       {:ex_check, "~> 0.16.0", only: [:test, :dev], runtime: false},
       {:credo, ">= 0.0.0", only: [:test, :dev], runtime: false},
-      {:dialyxir, ">= 0.0.0", only: [:test, :dev], runtime: false}
+      {:dialyxir, ">= 0.0.0", only: [:test, :dev], runtime: false},
+      {:jason, "~> 1.0"},
+      {:logger_json, "~> 6.0"}
     ]
   end
 end

@@ -5,6 +5,11 @@ get_env_or_raise = fn variable ->
     raise("environment variable #{variable} is missing.")
 end
 
+config :logger, :default_formatter,
+  # format: {Servant.Shared.ConsoleLogger, :format},
+  metadata: :all,
+  level: :warning
+
 config :servant,
   ecto_repos: [Servant.Repo],
   guild: get_env_or_raise.("GUILD_ID"),
