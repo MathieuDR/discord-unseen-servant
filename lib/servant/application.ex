@@ -8,7 +8,8 @@ defmodule Servant.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      Servant.Repo
+      Servant.Repo,
+      Servant.Calendar.Supervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
