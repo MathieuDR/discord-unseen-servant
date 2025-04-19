@@ -1,11 +1,13 @@
 defmodule Servant.Calendar.Scheduler do
+  @moduledoc false
   use GenServer
   use TypedStruct
+
   require Logger
 
   typedstruct do
-    field(:healthcheck_url, String.t())
-    field(:timeout, pos_integer() | nil, default: nil)
+    field :healthcheck_url, String.t()
+    field :timeout, pos_integer() | nil, default: nil
   end
 
   def start_link(_state) do
@@ -29,7 +31,8 @@ defmodule Servant.Calendar.Scheduler do
     now = DateTime.utc_now()
 
     timeout =
-      DateTime.add(now, 30, :second)
+      now
+      |> DateTime.add(30, :second)
       |> DateTime.diff(now, :millisecond)
 
     Process.send_after(self(), :update, timeout)

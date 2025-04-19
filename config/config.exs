@@ -1,21 +1,20 @@
 import Config
 
-# config :servant, Servant.Repo,
-#     adapter: Ecto.Adapters.SQLite3,
-#     database: "/path/to/sqlite/database"
+get_env_or_raise = fn variable ->
+  System.get_env(variable) ||
+    raise("environment variable #{variable} is missing.")
+end
 
 config :servant,
-  ecto_repos: [Servant.Repo]
+  ecto_repos: [Servant.Repo],
+  guild: get_env_or_raise.("GUILD_ID"),
+  channel: get_env_or_raise.("GUILD_ID")
 
 config :servant, Servant.Repo,
   adapter: Ecto.Adapters.SQLite3,
   database: "./priv/data/database.db"
 
 config :nostrum,
-  token:
-    System.get_env("DISCORD_TOKEN") ||
-      raise("""
-      environment variable DISCORD_TOKEN is missing.
-      """)
+  token: get_env_or_raise.("DISCORD_TOKEN")
 
 import_config "#{config_env()}.exs"
