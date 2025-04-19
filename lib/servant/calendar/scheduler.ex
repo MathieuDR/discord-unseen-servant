@@ -28,7 +28,7 @@ defmodule Servant.Calendar.Scheduler do
 
   def schedule(%__MODULE__{timeout: timeout} = state) do
     Process.send_after(self(), :update, timeout)
-    Logger.notice("Scheduled next update in", timeout_in_ms: timeout)
+    Logger.info("Scheduled next update in", timeout_in_ms: timeout)
 
     %{state | timeout: timeout}
   end

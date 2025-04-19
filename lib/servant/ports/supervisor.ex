@@ -1,4 +1,4 @@
-defmodule Servant.Calendar.Supervisor do
+defmodule Servant.Ports.Supervisor do
   @moduledoc false
   use Supervisor
 
@@ -9,13 +9,7 @@ defmodule Servant.Calendar.Supervisor do
   @impl true
   def init(_init_arg) do
     children = [
-      {
-        Servant.Calendar.Scheduler,
-        %Servant.Calendar.Scheduler{
-          timeout: 30 * 1000,
-          healthcheck_url: nil
-        }
-      }
+      Servant.Ports.Discord.Consumer
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

@@ -21,6 +21,7 @@ config :servant, Servant.Repo,
   database: "./priv/data/database.db"
 
 config :nostrum,
-  token: get_env_or_raise.("DISCORD_TOKEN")
+  token: get_env_or_raise.("DISCORD_TOKEN"),
+  ffmpeg: nil
 
 import_config "#{config_env()}.exs"

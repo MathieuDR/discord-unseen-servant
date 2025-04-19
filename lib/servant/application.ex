@@ -7,9 +7,16 @@ defmodule Servant.Application do
 
   @impl true
   def start(_type, _args) do
+    env = Mix.env()
+
+    unless env == :test do
+      Application.ensure_all_started(:nostrum)
+    end
+
     children = [
       Servant.Repo,
-      Servant.Calendar.Supervisor
+      Servant.Calendar.Supervisor,
+      Servant.Ports.Supervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
