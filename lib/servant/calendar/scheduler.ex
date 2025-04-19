@@ -22,14 +22,13 @@ defmodule Servant.Calendar.Scheduler do
 
   @impl true
   def handle_info(:update, %__MODULE__{} = state) do
-    Logger.info("Am updating")
     schedule(state)
     {:noreply, state}
   end
 
   def schedule(%__MODULE__{timeout: timeout} = state) do
     Process.send_after(self(), :update, timeout)
-    Logger.info("Scheduled next update in", timeout_in_ms: timeout)
+    Logger.notice("Scheduled next update in", timeout_in_ms: timeout)
 
     %{state | timeout: timeout}
   end
